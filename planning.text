@@ -1,6 +1,7 @@
 classes
 methods
 abc
+a;osihdf
 
 Class HillClimber
     Parameters
@@ -9,7 +10,7 @@ Class HillClimber
 
 
 Class GeneticClimbers
-    Paramaters
+    Parameters
         
     Methods
 
