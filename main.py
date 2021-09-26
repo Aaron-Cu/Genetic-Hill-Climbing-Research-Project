@@ -1,2 +1,2 @@
 print('hello idiot')
-print('bye')
+print('you suck')
