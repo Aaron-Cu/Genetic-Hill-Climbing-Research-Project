@@ -8,7 +8,7 @@ class Graphiest:
 
     def __init__(self, vert):
         verticies = vert
-        adj_matrix = [[0 for i in range(verticies)] for j in range(verticies)]
+        adj_matrix = [[1 for i in range(verticies)] for j in range(verticies)]
         #print(adj_matrix)
         for row in adj_matrix:
             print(row)
