@@ -57,7 +57,7 @@ class Graphiest:
             for j in range(0, i):
                 if (i)%2 == 0 and (j)%2 == 0:
                     self.adj_matrix[i][j] = 0
-        self.balance()
+                    self.adj_matrix[j][i] = 0
 
 
     # Method for balancing the adjacency matrix of the graph. 
@@ -94,12 +94,22 @@ class Graphiest:
         return self.adj_matrix[vertex_one][vertex_two]
 
     # A built in function for printing the adjacency matrix
-    #  to the console output.
+    # to the console output.
     def print(self):
         print()
         for row in self.adj_matrix:
             print(row)
         print()
+
+    # Can be used to ensure that the graph is balanced
+    # 
+    def test(self):
+        test_bool = True
+        for i in range(len(self.adj_matrix)):
+            for j in range(len(self.adj_matrix)):
+                if self.adj_matrix[i][j] != self.adj_matrix[j][i]:
+                    test_bool = False
+        return test_bool
 
 
 
@@ -130,3 +140,6 @@ print("Getting weigt of edge from vertex 2 to 4")
 print()
 print(G.get_edge_weight(2,4))
 print()
+
+L = Graphiest(15, 1)
+print(L.test())
