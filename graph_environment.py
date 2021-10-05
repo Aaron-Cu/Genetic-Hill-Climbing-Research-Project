@@ -8,17 +8,25 @@ class Graphiest:
 
     def __init__(self, vert):
         verticies = vert
-        adj_matrix = [[1 for i in range(verticies)] for j in range(verticies)]
+        self.adj_matrix = [[1 for i in range(verticies)] for j in range(verticies)]
         #print(adj_matrix)
-        for row in adj_matrix:
+        for row in self.adj_matrix:
             print(row)
         print()
-        for i in range(len(adj_matrix)):
-            for j in range(len(adj_matrix[i])):
+        for i in range(len(self.adj_matrix)):
+            for j in range(len(self.adj_matrix[i])):
                 if i == j:
-                    adj_matrix[i][j] = 0
-        for row in adj_matrix:
+                    self.adj_matrix[i][j] = 0
+        for row in self.adj_matrix:
             print(row)
+    
+    def balance(self):
+        for i in range(len(self.adj_matrix)):
+            for j in range(len(self.adj_matrix[i])):
+                if i == j:
+                    self.adj_matrix[j][i] = self.adj_matrix[i][j]
+
+
 
 G = Graphiest(5)
 
