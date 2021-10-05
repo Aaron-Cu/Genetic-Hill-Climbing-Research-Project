@@ -12,6 +12,13 @@ class Graphiest:
         #print(adj_matrix)
         for row in adj_matrix:
             print(row)
+        print()
+        for i in range(len(adj_matrix)):
+            for j in range(len(adj_matrix[i])):
+                if i == j:
+                    adj_matrix[i][j] = 0
+        for row in adj_matrix:
+            print(row)
 
 G = Graphiest(5)
 
