@@ -21,13 +21,20 @@ class Graphiest:
             print(row)
     
     def balance(self):
+        self.adj_matrix[4][0] = 7
         for i in range(len(self.adj_matrix)):
-            for j in range(len(self.adj_matrix[i])):
-                if i == j:
+            for j in range(0,i):
                     self.adj_matrix[j][i] = self.adj_matrix[i][j]
+
+    def print(self):
+        print()
+        for row in self.adj_matrix:
+            print(row)
+        print()
 
 
 
 G = Graphiest(5)
-
+G.balance()
+G.print()
 
