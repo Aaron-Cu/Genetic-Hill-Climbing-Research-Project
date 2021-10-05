@@ -29,9 +29,12 @@ class Graphiest:
         print()
 
 
-
+print("Creating a Fully Connected Graph of size 5")
 G = Graphiest(5)
+print("Setting bottom Left to 7")
 G.adj_matrix[4][0] = 7
+G.print()
+print("Balancing Right..")
 G.balance()
 G.print()
 
