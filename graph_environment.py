@@ -93,6 +93,13 @@ class Graphiest:
     def get_edge_weight(self, vertex_one, vertex_two):
         return self.adj_matrix[vertex_one][vertex_two]
 
+    #
+    #
+    def is_edge(self, vert1, vert2):
+        if self.adj_matrix[vert1][vert2] == 0:
+            return False
+        return True
+
     # A built in function for printing the adjacency matrix
     # to the console output.
     def print(self):
@@ -110,6 +117,8 @@ class Graphiest:
                 if self.adj_matrix[i][j] != self.adj_matrix[j][i]:
                     test_bool = False
         return test_bool
+
+
 
 
 
@@ -140,6 +149,3 @@ print("Getting weigt of edge from vertex 2 to 4")
 print()
 print(G.get_edge_weight(2,4))
 print()
-
-L = Graphiest(15, 1)
-print(L.test())
