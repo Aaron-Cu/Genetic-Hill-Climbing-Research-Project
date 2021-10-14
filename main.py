@@ -32,7 +32,13 @@ print()
 
 print("Making a Hill CLimber")
 h = hill_climber(0, G)
-print("possible move from start of 0 is " + str(h.next_move()))
 
+print("possible moves")
+print(h.possible_moves)
+
+print("Next Move")
+print(h.next_move())
+
+print()
 print("DFS printout")
 has_hamiltonian(G , 0)

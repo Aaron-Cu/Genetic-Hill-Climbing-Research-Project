@@ -17,42 +17,54 @@ class Graphiest:
     # of size n by n specified by input perameters.
     # Input: int vert for the number of vertices in 
     # the desired graph.
+    # Complexity of O(n^2) for generating a graph
     def __init__(self, vert, upper):
         self.vertices_count = vert
 
+        # Populating the adj_matrix[]*verticies_count 
+        # with 1s
         print("Generating Edges..")
         self.__pls_fill_ones_uwu()
         self.print()
 
+        # Removing the edges that are from a node
+        # to itself.
         print("Removing Loops..")
         self.__no_loops_pls()
         self.print()
 
-        ##print("Applying pattern..")
-        ##self.__apply_pattern()
-        ##self.print()
+        # Removing edges from the currently 
+        # fully connected graph
+        # print("Applying pattern..")
+        # self.__apply_pattern()
+        # self.print()
 
+        # Adding weights to the adj_matrix for
+        # all edges.
         print("Adding Weights..")
         self.add_weights(upper)
         self.print()
 
     # Initializes the adjacency matrix with 1s of size
     # vertices_count
+    # Time complexity of O(n^2)
     def __pls_fill_ones_uwu(self):
         self.adj_matrix = [[1 for i in range(self.vertices_count)] 
             for j in range(self.vertices_count)]
 
     # Removes adjacency matrix edges from a vertex to 
     # itself.
-    # complexity of O(n^2) basic operation: assignment
+    # Time complexity of O(n^2) basic operation: assignment
     def __no_loops_pls(self):
         for i in range(len(self.adj_matrix)):
             for j in range(len(self.adj_matrix[i])):
                 if i == j:
                     self.adj_matrix[i][j] = 0
 
-    #
-    #
+    # Removes edges in such a way to keep
+    # to still insure a hamoltonian curcut
+    # is possible.
+    # Complexity of O(n^2)
     def __apply_pattern(self):
         for i in range(len(self.adj_matrix)):
             for j in range(0, i):
@@ -64,12 +76,14 @@ class Graphiest:
     # Method for balancing the adjacency matrix of the graph. 
     # The matrix should always be balance since this is
     # an undirected graph.
+    # Complexity of O(n^2)
     def balance(self):
         for i in range(len(self.adj_matrix)):
             for j in range(0, i):
                 self.adj_matrix[j][i] = self.adj_matrix[i][j]
 
     # Adds random weights from (0 to upper_bound]
+    # Complexity of O(n^2)
     def add_weights(self, upper_bound):
         for i in range(len(self.adj_matrix)):
             for j in range(0, i):
@@ -82,6 +96,7 @@ class Graphiest:
 
     # Method for fetching a list of the neighbors for any
     # given vertex.
+    # complesity of O(n)
     def get_neighbors(self, vertex):
         arr = []
         for index in range(len(self.adj_matrix[vertex])):
@@ -89,13 +104,14 @@ class Graphiest:
                 arr.append(index)
         return arr
 
-    #Method for fetching an edge weight.
-    #
+    # Method for fetching an edge weight.
+    # Complexity of O(1)
     def get_edge_weight(self, vertex_one, vertex_two):
         return self.adj_matrix[vertex_one][vertex_two]
 
-    #
-    #
+    # returns true if there exists an edge between
+    # any two given verticies.
+    # Complexity O(1)
     def is_edge(self, vert1, vert2):
         if self.adj_matrix[vert1][vert2] == 0:
             return False
@@ -103,6 +119,7 @@ class Graphiest:
 
     # A built in function for printing the adjacency matrix
     # to the console output.
+    # Complexity of O(n^2)
     def print(self):
         print()
         for row in self.adj_matrix:
@@ -110,7 +127,7 @@ class Graphiest:
         print()
 
     # Can be used to ensure that the graph is balanced
-    # 
+    # complexity of O(n^2)
     def test(self):
         test_bool = True
         for i in range(len(self.adj_matrix)):
