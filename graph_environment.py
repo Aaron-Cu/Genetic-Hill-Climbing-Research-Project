@@ -10,15 +10,15 @@ def round_down(n, decimals=0):
 
 
 class Graphiest:
-    verticies_count = None
+    vertices_count = None
     adj_matrix = None
 
     # Class Constructor, Initializes a adjacency matrix 
     # of size n by n specified by input perameters.
-    # Input: int vert for the number of verticies in 
+    # Input: int vert for the number of vertices in 
     # the desired graph.
     def __init__(self, vert, upper):
-        self.verticies_count = vert
+        self.vertices_count = vert
 
         print("Generating Edges..")
         self.__pls_fill_ones_uwu()
@@ -28,22 +28,23 @@ class Graphiest:
         self.__no_loops_pls()
         self.print()
 
-        print("Applying pattern..")
-        self.__apply_pattern()
-        self.print()
+        ##print("Applying pattern..")
+        ##self.__apply_pattern()
+        ##self.print()
 
         print("Adding Weights..")
         self.add_weights(upper)
         self.print()
 
     # Initializes the adjacency matrix with 1s of size
-    # verticies_count
+    # vertices_count
     def __pls_fill_ones_uwu(self):
-        self.adj_matrix = [[1 for i in range(self.verticies_count)] 
-            for j in range(self.verticies_count)]
+        self.adj_matrix = [[1 for i in range(self.vertices_count)] 
+            for j in range(self.vertices_count)]
 
     # Removes adjacency matrix edges from a vertex to 
     # itself.
+    # complexity of O(n^2) basic operation: assignment
     def __no_loops_pls(self):
         for i in range(len(self.adj_matrix)):
             for j in range(len(self.adj_matrix[i])):
@@ -117,35 +118,3 @@ class Graphiest:
                 if self.adj_matrix[i][j] != self.adj_matrix[j][i]:
                     test_bool = False
         return test_bool
-
-
-
-
-
-# Code for testing the Class Functions
-# Output in the console will be used to verify functionality
-print("Creating a Fully Connected Graph of size 5 and weights bound by 100")
-G = Graphiest(5, 100)
-
-# TESTING ADDING WEIGHTS
-# print("Adding weights bounded to 100")
-# G.add_weights(100)  # 100 upper bound test
-# G.print()
-
-# TESTING BALANCING
-# print("Setting bottom Left to 7")
-# G.adj_matrix[4][0] = 7
-# G.print()
-# print("Balancing Right..")
-# G.balance()
-# G.print()
-
-print("Fettching neighbors of vertex 2")
-print()
-print(G.get_neighbors(2))
-print()
-
-print("Getting weigt of edge from vertex 2 to 4")
-print()
-print(G.get_edge_weight(2,4))
-print()
