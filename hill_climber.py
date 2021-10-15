@@ -1,6 +1,8 @@
 from graph_environment import Graphiest
 import exhaustive_search
 
+# a class for a hill-climber object to be implemented
+# by a genetic algorithm.
 class hill_climber:
 
     path = None
@@ -8,14 +10,25 @@ class hill_climber:
     possible_moves = None
     graph = None
 
+    # initializes the hill climber to a given start posion on 
+    # 'graph'
+    # complexity of O(n) (because of get_neighbors function)
     def __init__(self, start, graph):
         self.current = start
         self.graph = graph
         self.path = []
         self.get_moves()
     
+    # Sets the list of possible moves to the neighbors of a give 
+    # current position
+    # Complexity of O(n)
     def get_moves(self):
-        self.possible_moves = self.graph.get_neightbors(self.current)
+        self.possible_moves = self.graph.get_neighbors(self.current)
+        temp = []
+        for index in range(0, len(self.possible_moves)):
+            if self.possible_moves[index] not in self.path:
+                temp.append(self.possible_moves[index])
+        self.possible_moves = temp
     
     def step(self, step_size):
         for i in range(step_size):
@@ -24,19 +37,19 @@ class hill_climber:
                     self.take_move(self.next_move())
 
     def has_next_move(self):
-        if len(self.graph.get_neighbors(self.current)) == 0:
+        if len(self.possible_moves) == 0:
             return False
         return True
     
     def next_move(self):
-        self.possible_moves = self.graph.get_neighbors(self.current)
+        self.get_moves
         if self.has_next_move() == False:
             return -1
         min = 0
-        for index in self.possible_moves:
+        for index in range(0, len(self.possible_moves)):
             if self.graph.get_edge_weight(self.current, self.possible_moves[index]) < self.graph.get_edge_weight(self.current, self.possible_moves[min]):
                 min = index
-        return min
+        return self.possible_moves[min]
     
     def take_move(self, move):
         self.path.apend(self.current)
