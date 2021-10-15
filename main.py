@@ -33,11 +33,131 @@ print()
 print("Making a Hill CLimber")
 h = hill_climber(0, G)
 
+# First Step
+print("current position is")
+print(h.current)
+
 print("possible moves")
 print(h.possible_moves)
 
-print("Next Move")
-print(h.next_move())
+print()
+print("taking next move")
+h.take_move(h.next_move())
+
+print("new current is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print("current path is")
+print(h.path)
+
+print("fitness is ")
+print(h.fitness_function())
+
+# Second Step
+print()
+print("current position is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print()
+print("taking next move")
+h.take_move(h.next_move())
+
+print("new current is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print("current path is")
+print(h.path)
+
+print("fitness is ")
+print(h.fitness_function())
+
+# Third Step
+print()
+print("current position is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print()
+print("taking next move")
+h.take_move(h.next_move())
+
+print("new current is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print("current path is")
+print(h.path)
+
+print("fitness is ")
+print(h.fitness_function())
+
+# Frouth Step
+print()
+print("current position is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print()
+print("taking next move")
+h.take_move(h.next_move())
+
+print("new current is")
+print(h.current)
+
+print("possible moves")
+print(h.possible_moves)
+
+print("current path is")
+print(h.path)
+
+print("fitness is ")
+print(h.fitness_function())
+
+print()
+print()
+print("is goal state")
+print(h.is_goal())
+
+print()
+print("________________________________")
+print()
+print("making second hill climber")
+h_2 = hill_climber(0, G)
+
+print ("taking four steps on same graph")
+h_2.step(4)
+
+print("current is")
+print(h.current)
+
+print("possible moves")
+print(h_2.possible_moves)
+
+print("current path is")
+print(h_2.path)
+
+print("fitness is ")
+print(h_2.fitness_function())
+
+print()
+print()
+print("is goal state")
+print(h_2.is_goal())
 
 print()
 print("DFS printout")

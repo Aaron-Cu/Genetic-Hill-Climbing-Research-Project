@@ -17,6 +17,7 @@ class hill_climber:
         self.current = start
         self.graph = graph
         self.path = []
+        self.path.append(self.current)
         self.get_moves()
     
     # Sets the list of possible moves to the neighbors of a give 
@@ -52,23 +53,25 @@ class hill_climber:
         return self.possible_moves[min]
     
     def take_move(self, move):
-        self.path.apend(self.current)
         self.current = move
+        self.path.append(self.current)
         self.get_moves()
 
     def fitness_function(self):
         total_weight = 0
-        if len(self.path) == 0:
+        if len(self.path) <= 1:
             return total_weight
-        for i in range(1, len(self.path)-1):
+        for i in range(1, len(self.path)):
             total_weight += self.graph.get_edge_weight(self.path[i-1], self.path[i])
         return total_weight
 
     def is_dead_end(self):
-        return
+        if self.graph.vertices_count == len(self.path):
+            return True
+        return False
 
     def is_goal(self):
-        if len(self.path) == self.graph.vertices_count:
+        if self.is_dead_end():
             if self.graph.is_edge(self.path[len(self.path)-1], self.path[0]):
                 return True
         return False
