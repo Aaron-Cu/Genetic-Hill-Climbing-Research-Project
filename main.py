@@ -1,5 +1,5 @@
 from graph_environment import Graphiest
-from exhaustive_search import has_hamiltonian
+import exhaustive_search
 from hill_climber import hill_climber
 
 # Code for testing the Class Functions
@@ -41,4 +41,3 @@ print(h.next_move())
 
 print()
 print("DFS printout")
-has_hamiltonian(G , 0)
