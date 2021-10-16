@@ -1,5 +1,6 @@
 from graph_environment import Graphiest
 import exhaustive_search
+from has_hamiltonian import hamie
 from hill_climber import hill_climber
 
 # Code for testing the Class Functions
@@ -161,3 +162,8 @@ print(h_2.is_goal())
 
 print()
 print("DFS printout")
+
+ham = hamie()
+print("has ham")
+print(ham.has_hamiltonian(G, 0))
+print(*ham.list_cycles, sep = "\n")

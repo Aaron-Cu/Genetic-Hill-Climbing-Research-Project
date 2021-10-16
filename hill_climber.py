@@ -53,9 +53,10 @@ class hill_climber:
         return self.possible_moves[min]
     
     def take_move(self, move):
-        self.current = move
-        self.path.append(self.current)
-        self.get_moves()
+        if move in self.possible_moves:
+            self.current = move
+            self.path.append(self.current)
+            self.get_moves()
 
     def fitness_function(self):
         total_weight = 0
@@ -63,6 +64,8 @@ class hill_climber:
             return total_weight
         for i in range(1, len(self.path)):
             total_weight += self.graph.get_edge_weight(self.path[i-1], self.path[i])
+        if self.is_goal:
+            total_weight += self.graph.get_edge_weight(self.path[0], self.path[len(self.path)-1])
         return total_weight
 
     def is_dead_end(self):
