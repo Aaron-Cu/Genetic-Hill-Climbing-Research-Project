@@ -4,7 +4,7 @@ import exhaustive_search
 # a class for a hill-climber object to be implemented
 # by a genetic algorithm.
 class hill_climber:
-
+    
     path = None
     current =  None
     possible_moves = None
