@@ -172,7 +172,7 @@ def _end():
     end = True
 
 
-# map the inputs to the function blocks
+# mapped the inputs to the function blocks
 options = {'end' : _end,
              '0' : test_graph,
              '1' : test_hill,
