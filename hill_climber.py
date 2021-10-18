@@ -3,6 +3,7 @@ import exhaustive_search
 
 # a class for a hill-climber object to be implemented
 # by a genetic algorithm.
+# Effective Complexity of (n^2)
 class hill_climber:
     
     path = None
