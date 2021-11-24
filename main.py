@@ -26,7 +26,6 @@ def test_graph():
     print()
     print("\n")
 
-
 def test_hill():
     print("\n")
     print("Making a Hill CLimber")
@@ -146,17 +145,16 @@ def test_hill():
     print("possible moves")
     print(h_2.possible_moves)
 
+    print()
+    print("is goal state")
+    print(h_2.is_goal())
+    print("\n")
+
     print("current path is")
     print(h_2.path)
 
     print("fitness is ")
     print(h_2.fitness_function())
-
-    print()
-    print()
-    print("is goal state")
-    print(h_2.is_goal())
-    print("\n")
 
 def test_has_ham():
     print("\n")
@@ -179,15 +177,11 @@ def test_genetic_hill_climber() :
     print("\nAged: ")
     print(geneticTest.AGED)
 
-    
-    
-
 end = False
 
 def _end():
     global end
     end = True
-
 
 # mapped the inputs to the function blocks
 options = {'end' : _end,

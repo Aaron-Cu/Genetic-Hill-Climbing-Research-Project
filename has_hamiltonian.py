@@ -74,7 +74,7 @@ class hamie:
                     return total_weight
                 for i in range(1, len(path)):
                     total_weight += graph.get_edge_weight(path[i - 1], path[i])
-                self.list_cycles.append([path.copy(), total_weight])
+                self.list_cycles.append([path.copy(), total_weight, total_weight/(len(path)-1)])
                 path.pop(len(path) - 1)
                 self.has_cycle = True
 

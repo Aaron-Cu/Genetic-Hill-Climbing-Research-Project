@@ -99,7 +99,6 @@ class Graphiest:
     # complesity of O(n)
     def get_neighbors(self, vertex):
         arr = []
-        print(vertex)
         for index in range(len(self.adj_matrix[vertex])):
             if self.adj_matrix[vertex][index] != 0:
                 arr.append(index)

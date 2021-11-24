@@ -79,7 +79,7 @@ class hill_climber:
             total_weight += self.graph.get_edge_weight(self.path[i-1], self.path[i])
         if self.is_goal:
             total_weight += self.graph.get_edge_weight(self.path[0], self.path[len(self.path)-1])
-        return total_weight
+        return (total_weight/(len(self.path)-1))
 
     # Returns true if there are no more possible moves
     # Complexity of O(1)
@@ -88,12 +88,17 @@ class hill_climber:
             return True
         return False
 
-    # Returns true if the current state is a goal state
+    # Returns true if the current state is a goal state, and if is appends head to tail
     # Complexity of O(1)
     def is_goal(self):
         if self.is_dead_end():
             if self.graph.is_edge(self.path[len(self.path)-1], self.path[0]):
+                temp = self.path[0]
+                self.path.append(temp)
                 return True
         return False
 
+    #NEEDS WORK
+    def getPathLength(self):
+        pass
     
