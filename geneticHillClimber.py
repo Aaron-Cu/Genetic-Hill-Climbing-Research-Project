@@ -24,7 +24,10 @@ class geneticHillClimber :
         self.POPULATION = [hill_climber( self.randomStart(), self.GRAPH) for i in range(self.POPULATION_SIZE)]
     
     def printPopulation(self) :
-        pass
+        temp = ""
+        for index in range(len(self.POPULATION)):
+            temp += "\nIndividual "+ str(index) + " Path: " + str(self.POPULATION[index].path) + " Fitness: " + str(self.POPULATION[index].fitness_function())
+        print(temp)
 
     def printAged(self) :
         pass

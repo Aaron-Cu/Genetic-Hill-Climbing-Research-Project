@@ -175,7 +175,7 @@ def test_genetic_hill_climber() :
     print("\nStep size: ")
     print(geneticTest.STEP_SIZE)
     print("\nPopulation: ")
-    print(geneticTest.POPULATION)
+    print(geneticTest.printPopulation())
     print("\nAged: ")
     print(geneticTest.AGED)
 
