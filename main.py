@@ -2,6 +2,7 @@ from graph_environment import Graphiest
 import exhaustive_search
 from has_hamiltonian import hamie
 from hill_climber import hill_climber
+from geneticHillClimber import geneticHillClimber
 
 
 # Code for testing the Class Functions
@@ -166,7 +167,20 @@ def test_has_ham():
     print("\n")
 
 def test_genetic_hill_climber() :
-    pass
+    geneticTest = geneticHillClimber(G, 2 , 1)
+    print("\nGraph:")
+    geneticTest.GRAPH.print()
+    print("\nPopulation size: ") 
+    print(geneticTest.POPULATION_SIZE)
+    print("\nStep size: ")
+    print(geneticTest.STEP_SIZE)
+    print("\nPopulation: ")
+    print(geneticTest.POPULATION)
+    print("\nAged: ")
+    print(geneticTest.AGED)
+
+    
+    
 
 end = False
 
