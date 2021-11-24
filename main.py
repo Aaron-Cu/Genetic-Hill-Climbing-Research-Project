@@ -165,6 +165,9 @@ def test_has_ham():
     print(*ham.list_cycles, sep = "\n")
     print("\n")
 
+def test_genetic_hill_climber() :
+    pass
+
 end = False
 
 def _end():
@@ -177,6 +180,7 @@ options = {'end' : _end,
              '0' : test_graph,
              '1' : test_hill,
              '2' : test_has_ham,
+             '3' : test_genetic_hill_climber,
 }
 
 while(end == False):
@@ -187,6 +191,7 @@ while(end == False):
         " 0  : To test the Graph.\n"+
         " 1  : To test the Hill Climber.\n"+
         " 2  : To test the Exhustive Search.\n"+
+        " 3  : To test the Genetic Hill Climber.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()
