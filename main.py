@@ -165,7 +165,7 @@ def test_has_ham():
     print("\n")
 
 def test_genetic_hill_climber() :
-    geneticTest = geneticHillClimber(G, 2 , 1)
+    geneticTest = geneticHillClimber(G, 4 , 2)
     print("\nGraph:")
     geneticTest.GRAPH.print()
     print("\nPopulation size: ") 
@@ -173,9 +173,53 @@ def test_genetic_hill_climber() :
     print("\nStep size: ")
     print(geneticTest.STEP_SIZE)
     print("\nPopulation: ")
-    print(geneticTest.printPopulation())
+    geneticTest.printPopulation()
     print("\nAged: ")
-    print(geneticTest.AGED)
+    geneticTest.printAged()
+
+    print("\n_________________________________________\n")
+    print("TAKING A POPULATION STEP OF SIZE "+str(geneticTest.STEP_SIZE)+".")
+    geneticTest.stepPopulaion()
+    print("\n_________________________________________\n")
+
+    print("\nPopulation size: ") 
+    print(geneticTest.POPULATION_SIZE)
+    print("\nStep size: ")
+    print(geneticTest.STEP_SIZE)
+    print("\nPopulation: ")
+    geneticTest.printPopulation()
+    print("\nAged: ")
+    geneticTest.printAged()
+
+    print("\n_________________________________________\n")
+    print("TAKING A POPULATION STEP OF SIZE "+str(geneticTest.STEP_SIZE)+".")
+    geneticTest.stepPopulaion()
+    print("\n_________________________________________\n")
+
+    print("\nPopulation size: ") 
+    print(geneticTest.POPULATION_SIZE)
+    print("\nStep size: ")
+    print(geneticTest.STEP_SIZE)
+    print("\nPopulation: ")
+    geneticTest.printPopulation()
+    print("\nAged: ")
+    geneticTest.printAged()
+
+    print("\n_________________________________________\n")
+    print("TAKING A POPULATION STEP OF SIZE "+str(geneticTest.STEP_SIZE)+".")
+    geneticTest.stepPopulaion()
+    print("\n_________________________________________\n")
+
+    print("\nPopulation size: ") 
+    print(geneticTest.POPULATION_SIZE)
+    print("\nStep size: ")
+    print(geneticTest.STEP_SIZE)
+    print("\nPopulation: ")
+    geneticTest.printPopulation()
+    print("\nAged: ")
+    geneticTest.printAged()
+
+    
 
 end = False
 

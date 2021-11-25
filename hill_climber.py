@@ -91,6 +91,8 @@ class hill_climber:
     # Returns true if the current state is a goal state, and if is appends head to tail
     # Complexity of O(1)
     def is_goal(self):
+        if len(self.path) > self.graph.vertices_count:
+            return True
         if self.is_dead_end():
             if self.graph.is_edge(self.path[len(self.path)-1], self.path[0]):
                 temp = self.path[0]
