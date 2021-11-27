@@ -9,7 +9,7 @@ from geneticHillClimber import geneticHillClimber
 # Output in the console will be used to verify functionality
 print("\n")
 print("Creating a Fully Connected Graph G with weights bound by 100")
-vertexCount = int(input("Enter the number of vertexes for G..\n"))
+vertexCount = int(input("Enter the number of vertexes for G..  (5 or more, 5 for function tests)\n"))
 G = Graphiest(vertexCount, 100)
 
 
