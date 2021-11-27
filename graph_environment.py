@@ -2,7 +2,7 @@
 #
 import random
 import math
-
+from has_ham_circuit import circuit
 
 def round_down(n, decimals=0):
     multiplier = 10 ** decimals
@@ -35,9 +35,9 @@ class Graphiest:
 
         # Removing edges from the currently 
         # fully connected graph
-        # print("Applying pattern..")
-        # self.__apply_pattern()
-        # self.print()
+        print("Applying pattern..")
+        self.__apply_pattern()
+        self.print()
 
         # Adding weights to the adj_matrix for
         # all edges.
@@ -66,11 +66,23 @@ class Graphiest:
     # is possible.
     # Complexity of O(n^2)
     def __apply_pattern(self):
-        for i in range(len(self.adj_matrix)):
-            for j in range(0, i):
-                if (i)%2 == 0 and (j)%2 == 0:
-                    self.adj_matrix[i][j] = 0
-                    self.adj_matrix[j][i] = 0
+        countOfDel = round_down(0.2 * self.vertices_count)
+        print(countOfDel)
+        i = 0
+        ham = circuit()
+        while i < countOfDel:
+            v1 = random.randint(0, self.vertices_count-1)
+            v2 = random.randint(0, self.vertices_count-1)
+            if v1 != v2:
+                if self.adj_matrix[v1][v2] != 0:
+                    self.adj_matrix[v1][v2] = 0
+                    self.adj_matrix[v2][v1] = 0
+                    if ham.has_hamiltonian(self, 0):
+                        i = i+1
+                    else:
+                        self.adj_matrix[v1][v2] = 1
+                        self.adj_matrix[v2][v1] = 1
+            
 
 
     # Method for balancing the adjacency matrix of the graph. 

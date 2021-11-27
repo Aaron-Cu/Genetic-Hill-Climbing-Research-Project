@@ -8,8 +8,9 @@ from geneticHillClimber import geneticHillClimber
 # Code for testing the Class Functions
 # Output in the console will be used to verify functionality
 print("\n")
-print("Creating a Fully Connected Graph of size 5 and weights bound by 100")
-G = Graphiest(5, 100)
+print("Creating a Fully Connected Graph G with weights bound by 100")
+vertexCount = int(input("Enter the number of vertexes for G..\n"))
+G = Graphiest(vertexCount, 100)
 
 
 # Test Graph
@@ -225,6 +226,8 @@ def test_genetic_hill_climber() :
     print("\n_________________________________________\n")
     geneticTest.printPopulation()
 
+def test_G():
+    G.print()
 
     
 
@@ -240,6 +243,7 @@ options = {'end' : _end,
              '1' : test_hill,
              '2' : test_has_ham,
              '3' : test_genetic_hill_climber,
+             '4' : test_G,
 }
 
 while(end == False):
@@ -251,6 +255,7 @@ while(end == False):
         " 1  : To test the Hill Climber.\n"+
         " 2  : To test the Exhustive Search.\n"+
         " 3  : To test the Genetic Hill Climber.\n"+
+        " 4  : To test the GHC with G.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()

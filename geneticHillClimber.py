@@ -73,10 +73,12 @@ class geneticHillClimber :
     def findParents(self):
         parentOne = none
         parentTwo = none
-        pass
-
+        start = 0
+        return start
 
     def newCimberFromCrossover(self) :
-        pass
+        while len(self.POPULATION) < self.POPULATION_SIZE:
+            self.POPULATION()
+        
 
 
