@@ -256,6 +256,8 @@ while(end == False):
         " 2  : To test the Exhustive Search.\n"+
         " 3  : To test the Genetic Hill Climber.\n"+
         " 4  : To test the GHC with G.\n"+
+        " 5  : To Push G to file.\n"+
+        " 6  : Generate new G.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()

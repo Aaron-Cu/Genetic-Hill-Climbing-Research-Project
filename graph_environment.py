@@ -12,6 +12,7 @@ def round_down(n, decimals=0):
 class Graphiest:
     vertices_count = None
     adj_matrix = None
+    deleteRate = 0.22
 
     # Class Constructor, Initializes a adjacency matrix 
     # of size n by n specified by input perameters.
@@ -44,7 +45,7 @@ class Graphiest:
         print("Adding Weights..")
         self.add_weights(upper)
         self.print()
-
+    
     # Initializes the adjacency matrix with 1s of size
     # vertices_count
     # Time complexity of O(n^2)
@@ -66,7 +67,7 @@ class Graphiest:
     # is possible.
     # Complexity of O(n^2)
     def __apply_pattern(self):
-        countOfDel = round_down(0.2 * self.vertices_count)
+        countOfDel = round_down(self.deleteRate * self.vertices_count * self.vertices_count)
         print(countOfDel)
         i = 0
         ham = circuit()
