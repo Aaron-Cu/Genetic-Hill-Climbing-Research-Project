@@ -229,6 +229,19 @@ def test_genetic_hill_climber() :
 def test_G():
     G.print()
 
+def to_file():
+    G.toFile(input("Enter File Name\n"))
+
+def new_g():
+    print("\n")
+    print("Creating a Fully Connected Graph G with weights bound by 100")
+    vertexCount = int(input("Enter the number of vertexes for G..  (5 or more, 5 for function tests)\n"))
+    global G
+    G = Graphiest(vertexCount, 100)
+
+def from_file():
+    G.fromFile(input("Enter File Name\n"))
+
     
 
 end = False
@@ -244,6 +257,9 @@ options = {'end' : _end,
              '2' : test_has_ham,
              '3' : test_genetic_hill_climber,
              '4' : test_G,
+             '5' : to_file,
+             '6' : new_g,
+             '7' : from_file,
 }
 
 while(end == False):
@@ -258,6 +274,7 @@ while(end == False):
         " 4  : To test the GHC with G.\n"+
         " 5  : To Push G to file.\n"+
         " 6  : Generate new G.\n"+
+        " 7  : To Pull G from file.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()

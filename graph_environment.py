@@ -148,3 +148,36 @@ class Graphiest:
                 if self.adj_matrix[i][j] != self.adj_matrix[j][i]:
                     test_bool = False
         return test_bool
+
+    def toFile(self, fileName):
+        file = open("graphs/"+fileName, "w")
+        for row in self.adj_matrix:
+            file.write(str(row)+"\n")
+        file.close()
+
+    def fromFile(self, fileName):
+        file = open("graphs/"+fileName, "r")
+        linecount = 0
+        for line in file:
+            linecount = linecount + 1
+        file.close()
+        file = open("graphs/"+fileName, "r")
+        lines = [line.strip("[") for line in file]
+        file.close()
+        print(len(lines))
+        self.vertices_count = linecount
+        self.__pls_fill_ones_uwu()
+        self.print()
+        for i in range(len(lines)):
+            lines[i] = lines[i].replace("[","")
+            lines[i] = lines[i].replace("]","")
+            lines[i] = lines[i].replace(" ","")
+            lines[i] = lines[i].replace("\n","")
+            temp = lines[i].split(",")
+            for j in range(len(temp)):
+                print(i)
+                print(j)
+                print()
+                temp[j] = float(temp[j])
+                self.adj_matrix[i][j] = temp[j]
+        self.print()
