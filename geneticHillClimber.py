@@ -49,8 +49,26 @@ class geneticHillClimber :
         for index in range(len(self.POPULATION)):
             self.POPULATION[index].step(self.STEP_SIZE)
 
-    def sortPopulation(self):
-        pass
+    def partitionPopulation(self, low, high):
+        i = (low-1)
+        pivot = self.POPULATION[high].fitness_function()
+
+        for j in range(low, high):
+            if self.POPULATION[j].fitness_function() <= pivot:
+                i= i+1
+                self.POPULATION[i], self.POPULATION[j] = self.POPULATION[j], self.POPULATION[i]
+
+        self.POPULATION[i+1], self.POPULATION[high] = self.POPULATION[high], self.POPULATION[i+1]
+        return (i+1)
+
+    def sortPopulation(self, low, high):
+        if len(self.POPULATION) == 1:
+            return
+        if low < high:
+            pi = self.partitionPopulation(low, high)
+
+            self.sortPopulation(low, pi-1)
+            self.sortPopulation(pi+1, high)
 
     def findParents(self):
         parentOne = none

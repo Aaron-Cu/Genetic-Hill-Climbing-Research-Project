@@ -219,6 +219,13 @@ def test_genetic_hill_climber() :
     print("\nAged: ")
     geneticTest.printAged()
 
+    print("\n_________________________________________\n")
+    print("SORTING POPULATION.")
+    geneticTest.sortPopulation(0, geneticTest.POPULATION_SIZE-1)
+    print("\n_________________________________________\n")
+    geneticTest.printPopulation()
+
+
     
 
 end = False
