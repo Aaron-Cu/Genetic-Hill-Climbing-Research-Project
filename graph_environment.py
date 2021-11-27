@@ -175,9 +175,6 @@ class Graphiest:
             lines[i] = lines[i].replace("\n","")
             temp = lines[i].split(",")
             for j in range(len(temp)):
-                print(i)
-                print(j)
-                print()
                 temp[j] = float(temp[j])
                 self.adj_matrix[i][j] = temp[j]
         self.print()
