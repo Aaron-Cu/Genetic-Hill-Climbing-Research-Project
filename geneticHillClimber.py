@@ -9,6 +9,7 @@ class geneticHillClimber :
     GRAPH = None
     POPULATION = None
     AGED = None
+    REPLACEMENT_RATE = 0.2
 
     def __init__(self, graph, popSize, stepSize) :
         self.POPULATION_SIZE = popSize
@@ -48,8 +49,14 @@ class geneticHillClimber :
         for index in range(len(self.POPULATION)):
             self.POPULATION[index].step(self.STEP_SIZE)
 
-    def findParents(self):
+    def sortPopulation(self):
         pass
+
+    def findParents(self):
+        parentOne = none
+        parentTwo = none
+        pass
+
 
     def newCimberFromCrossover(self) :
         pass
