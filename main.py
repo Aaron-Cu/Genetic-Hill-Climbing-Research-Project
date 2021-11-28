@@ -4,6 +4,7 @@ from has_hamiltonian import hamie
 from hill_climber import hill_climber
 from geneticHillClimber import geneticHillClimber
 import time
+from branch_and_bound import branchAndBound
 
 # Code for testing the Class Functions
 # Output in the console will be used to verify functionality
@@ -258,6 +259,12 @@ def new_g():
 def from_file():
     G.fromFile(input("Enter File Name\n"))
 
+def test_BAB_G():
+    start_time = time.time()
+    BAB = branchAndBound(G)
+    run_time = time.time() - start_time
+    print("--- %s seconds ---" % (run_time))
+
     
 
 end = False
@@ -276,6 +283,7 @@ options = {'end' : _end,
              '5' : to_file,
              '6' : new_g,
              '7' : from_file,
+             '8' : test_BAB_G,
 }
 
 while(end == False):
@@ -291,6 +299,7 @@ while(end == False):
         " 5  : To Push G to file.\n"+
         " 6  : Generate new G.\n"+
         " 7  : To Pull G from file.\n"+
+        " 8  : To test the BAB with G.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()
