@@ -14,8 +14,6 @@ print("Creating a Fully Connected Graph G with weights bound by 100")
 vertexCount = int(input("Enter the number of vertexes for G..  (5 or more, 5 for function tests)\n"))
 G = Graphiest(vertexCount, 100)
 
-
-
 # Test Graph
 def test_graph():
     print("\n")
@@ -169,7 +167,6 @@ def test_has_ham():
     print(*ham.list_cycles, sep = "\n")
     print("\n\nBest : \n")
     print(*ham.list_cycles[0])
-
 
 def test_genetic_hill_climber() :
     geneticTest = geneticHillClimber(G, 4 , 2)

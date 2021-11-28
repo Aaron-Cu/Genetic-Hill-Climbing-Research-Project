@@ -56,7 +56,7 @@ class branchAndBound:
         return second
 
 
-    def TSPRec(self, current_bound, current_weight, level, current_path, visited):
+    def TSPRec(self, current_bound, current_weight, level, current_path,):
         self.final_res
         if level == self.N:
             if self.adj[current_path[level - 1]][current_path[0]] != 0:
@@ -67,7 +67,7 @@ class branchAndBound:
                     final_res = current_res
             return
         for i in range(self.N):
-            if (self.adj[current_path[level - 1]][i] != 0 and visited[i] == False):
+            if (self.adj[current_path[level - 1]][i] != 0 and self.visited[i] == False):
                 temp = current_bound
                 current_weight += self.adj[current_path[level - 1]][i]
                 if level == 1:
@@ -78,26 +78,26 @@ class branchAndBound:
                                     current_path[level - 1]) + self.firstMin(i)) / 2)
                 if current_bound + current_weight < self.final_res:
                     current_path[level] = i
-                    visited[i] = True
+                    self.visited[i] = True
                     self.TSPRec(current_bound, current_weight,
-                        level + 1, current_path, visited)
+                        level + 1, current_path)
                 current_weight -= self.adj[current_path[level - 1]][i]
                 current_bound = temp
-                visited = [False] * len(visited)
+                self.visited = [False] * len(self.visited)
                 for j in range(level):
                     if current_path[j] != -1:
-                        visited[current_path[j]] = True
+                        self.visited[current_path[j]] = True
 
 
     def TSP(self):
         current_bound = 0
         current_path = [-1] * (self.N + 1)
-        visited = [False] * self.N
+        self.visited = [False] * self.N
         for i in range(self.N):
             current_bound += (self.firstMin(i) + self.secondMin(i))
         current_bound = math.ceil(current_bound / 2)
-        visited[0] = True
+        self.visited[0] = True
         current_path[0] = 0
-        self.TSPRec(current_bound, 0, 1, current_path, visited)
+        self.TSPRec(current_bound, 0, 1, current_path,)
 
 
