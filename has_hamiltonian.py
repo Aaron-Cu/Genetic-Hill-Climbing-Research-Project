@@ -9,6 +9,27 @@ class hamie:
     def __init__(self):
         self.has_cycle = None
 
+    def partitionList(self, low, high):
+        i = (low-1)
+        pivot = self.list_cycles[high][2]
+
+        for j in range(low, high):
+            if self.list_cycles[j][2] <= pivot:
+                i= i+1
+                self.list_cycles[i], self.list_cycles[j] = self.list_cycles[j], self.list_cycles[i]
+
+        self.list_cycles[i+1], self.list_cycles[high] = self.list_cycles[high], self.list_cycles[i+1]
+        return (i+1)
+    
+    def sortList(self, low, high):
+        if len(self.list_cycles) <= 1:
+            return
+        if low < high:
+            pi = self.partitionList(low, high)
+
+            self.sortList(low, pi-1)
+            self.sortList(pi+1, high)
+    
     # checks if a vertex can be added to the path
     # one, if function used to check edge weight from current position to next position
     # another for loop used to compare if the next vertex is repeated in the "path"

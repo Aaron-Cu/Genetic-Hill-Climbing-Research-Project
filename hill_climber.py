@@ -1,3 +1,4 @@
+from random import randint
 from graph_environment import Graphiest
 import exhaustive_search
 
@@ -58,6 +59,9 @@ class hill_climber:
         for index in range(0, len(self.possible_moves)):
             if self.graph.get_edge_weight(self.current, self.possible_moves[index]) < self.graph.get_edge_weight(self.current, self.possible_moves[min]):
                 min = index
+        if randint(1,100) <= 15:
+            print("RANDOM MOVE")
+            return self.possible_moves[randint(0, len(self.possible_moves)-1)]
         return self.possible_moves[min]
     
     # Changes current to a new positon and adds the new move to the
@@ -80,6 +84,17 @@ class hill_climber:
         if self.is_goal:
             total_weight += self.graph.get_edge_weight(self.path[0], self.path[len(self.path)-1])
         return (total_weight/(len(self.path)-1))
+
+    # Complexity of O(n)
+    def getPathWeight(self):
+        total_weight = 0
+        if len(self.path) <= 1:
+            return total_weight
+        for i in range(1, len(self.path)):
+            total_weight += self.graph.get_edge_weight(self.path[i-1], self.path[i])
+        if self.is_goal:
+            total_weight += self.graph.get_edge_weight(self.path[0], self.path[len(self.path)-1])
+        return total_weight
 
     # Returns true if there are no more possible moves
     # Complexity of O(1)

@@ -3,14 +3,16 @@ import exhaustive_search
 from has_hamiltonian import hamie
 from hill_climber import hill_climber
 from geneticHillClimber import geneticHillClimber
-
+import time
 
 # Code for testing the Class Functions
 # Output in the console will be used to verify functionality
+
 print("\n")
 print("Creating a Fully Connected Graph G with weights bound by 100")
 vertexCount = int(input("Enter the number of vertexes for G..  (5 or more, 5 for function tests)\n"))
 G = Graphiest(vertexCount, 100)
+
 
 
 # Test Graph
@@ -162,8 +164,10 @@ def test_has_ham():
     ham = hamie()
     print("has ham")
     print(ham.has_hamiltonian(G, 0))
+    ham.sortList(0, len(ham.list_cycles)-1)
     print(*ham.list_cycles, sep = "\n")
     print("\n")
+
 
 def test_genetic_hill_climber() :
     geneticTest = geneticHillClimber(G, 4 , 2)
@@ -226,8 +230,19 @@ def test_genetic_hill_climber() :
     print("\n_________________________________________\n")
     geneticTest.printPopulation()
 
+    print(geneticTest.PARENTCOUNT)
+
 def test_G():
-    G.print()
+    GHC = geneticHillClimber(G, 10, G.vertices_count+1)
+    GHC.printPopulation()
+    generations = int(input("Number of Generations..?\n"))
+    start_time = time.time()
+    GHC.run(generations)
+    run_time = time.time() - start_time
+    GHC.sortAged(0, len(GHC.AGED)-1)
+    GHC.printAged()
+    GHC.printBestSolution()
+    print("--- %s seconds ---" % (run_time))
 
 def to_file():
     G.toFile(input("Enter File Name\n"))
