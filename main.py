@@ -166,7 +166,8 @@ def test_has_ham():
     print(ham.has_hamiltonian(G, 0))
     ham.sortList(0, len(ham.list_cycles)-1)
     print(*ham.list_cycles, sep = "\n")
-    print("\n")
+    print("\n\nBest : \n")
+    print(*ham.list_cycles[0])
 
 
 def test_genetic_hill_climber() :
