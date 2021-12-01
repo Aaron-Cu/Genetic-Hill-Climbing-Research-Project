@@ -262,7 +262,15 @@ def test_BAB_G():
     run_time = time.time() - start_time
     print("--- %s seconds ---" % (run_time))
 
-    
+def test_HC_G():
+    HC = hill_climber(0, G)
+    start_time = time.time()
+    HC.step(G.vertices_count+1)
+    run_time = time.time() - start_time
+    print("\nIndividual "+ str(0) + " Path: " + str(HC.path) + " Fitness: " 
+            + str(HC.fitness_function()) +" Nodes: " + str(len(HC.path)-1) +
+            " Length of Path: " + str(HC.getPathWeight())) 
+    print("--- %s seconds ---" % (run_time)) 
 
 end = False
 
@@ -281,6 +289,7 @@ options = {'end' : _end,
              '6' : new_g,
              '7' : from_file,
              '8' : test_BAB_G,
+             '9' : test_HC_G,
 }
 
 while(end == False):
@@ -297,6 +306,7 @@ while(end == False):
         " 6  : Generate new G.\n"+
         " 7  : To Pull G from file.\n"+
         " 8  : To test the BAB with G.\n"+
+        " 9  : To test the HC with G.\n"+
         "end : To end this program.\n"+
         "=========================================\n\n"
     )]()
