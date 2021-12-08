@@ -30,7 +30,7 @@
 %%
 %% end of the preamble, start of the body of the document source.
 \begin{document}
-\title{Solving the Traveling Salesman Problem with Genetic Hill-Climbing}
+\title{Solving the Traveling Salesman Problem with Genetic Hill Climbing}
 
 %%
 %% The "author" command and its associated commands are used to define % the
@@ -86,7 +86,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe % the work
 %being presented. Separate the keywords with commas.
-\keywords{Algorithms, Hill-Climbing, Traveling Salesman, Genetic Algorithms, NP-hard, Exaustive Search, Branch and Bound, Heuristic}
+\keywords{Algorithms, Hill Climbing, Traveling Salesman, Genetic Algorithms, NP-Hard, Exaustive Search, Branch and Bound, Heuristic}
 
 %%
 %% This command processes the author and affiliation and title % information and
@@ -94,9 +94,9 @@
 \maketitle
 
 \section{Introduction}
-The history of the traveling salesman problem is unclear, however since its
-inception it has been a problem that has continued to puzzle mankind even until
-this day. The problem builds from finding a Hamiltonian cycle which can be
+The history of the Traveling Salesman problem is unclear, however since its
+inception it has been a problem that has continued to puzzle humankind even
+until this day. The problem builds from finding a Hamiltonian cycle which can be
 defined as a path in an undirected graph where each vertex is visited exactly
 once and then returning to the start. Thus, the start vertex is visited twice,
 once in the beginning and lastly once at the end. It further pushes the
@@ -110,27 +110,28 @@ up boxes at the start of the day, where the truck then needs to route to every
 destination in the most optimal manner to save time and gas before returning to
 the warehouse at the end of the day.
 
-There have been many attempts at solving the traveling salesman ranging from
-exact solutions which only work for small problem sizes to heuristic models that
-give approximations. Once the problem enlarges with many cities these outdated
-exact solutions are not capable of producing an answer. Here is where suboptimal
-heuristic algorithms come into play. In this paper, we propose a method to
-combine two individual heuristic algorithms, hill climbing and genetic algorithms
-(\citet{harik_compact_1999}), to create a genetic hill climbing algorithm that
-generates an approximate solution to the traveling salesman problem within a
-reasonable time. This type of solution to the traveling salesman is not novel
-(\citet{yuret_2014}), (\citet{wang_hybrid_2011}). The intuition for this approach is
-to combine the aspects of each individual algorithm to complement their
-respective weaknesses. On top of these heuristic approaches to the traveling
-salesman, there are others that use more new and innovative approaches. As seen
-by (\citet{mele_new_2021}), they have been able to obtain a time complexity of
-O(n\textsuperscript{2}log n\textsuperscript{2}) using the latest in machine
-learning. (\citet{ren_parallel_2020}) also takes inspiration from biological
-fields to innovate with a time complexity of O(n\textsuperscript{2}). These time
-operations are much quicker than traditional approaches.
+There have been many attempts at solving the Traveling Salesman problem ranging
+from exact solutions which only work for small problem sizes to heuristic
+models that give approximations. Once the problem enlarges with many cities
+these outdated exact solutions are not capable of producing an answer. Here is
+where suboptimal heuristic algorithms come into play. In this paper, we propose
+a method to combine two individual heuristic algorithms, Hill Climbing and
+Genetic algorithm (\citet{harik_compact_1999}), to create a Genetic Hill Climbing
+algorithm that generates an approximate solution to the Traveling Salesman
+problem within a reasonable time. This type of solution to the traveling
+salesman is not novel (\citet{yuret_2014}), (\citet{wang_hybrid_2011}). The
+intuition for this approach is to combine the aspects of each individual
+algorithm to complement their respective weaknesses. On top of these heuristic
+approaches to the traveling salesman, there are others that use more new and
+innovative approaches. As seen by \citet{mele_new_2021}, they have been able to
+obtain a time complexity of O(n\textsuperscript{2}log n\textsuperscript{2})
+using the latest in machine learning. \citet{ren_parallel_2020} also takes
+inspiration from biological fields to innovate with a time complexity of
+O(n\textsuperscript{2}). These time operations are much quicker than
+traditional approaches.
 
 \section{Problem Definition}
-The traveling salesman problem is modelled as an undirected weighted graph where
+The Traveling Salesman problem is modelled as an undirected weighted graph where
 the vertices represent cities while the graph’s edges represent the paths. The
 distances of the paths are then represented as the weights of the edges. There
 are no limitations in how the graph is designed other than the requirement that
@@ -142,12 +143,12 @@ Realistically this does not exist as it would be nearly impossible to find a
 road from one city to another without passing through another city or in this
 case a vertex or without backtracking and visiting another city or vertex.
 
-Symmetrical traveling salesman problems are situations in the graph design where
+Symmetrical Traveling Salesman problems are situations in the graph design where
 the distances between two cities are the same in each opposite direction. This
 is well represented in a road path where the route from once city to another and
 back is simply just the opposite way but same length. This is not to be confused
 with a graph that is connected but not complete. It is still possible for the
-traveling salesman problem to exist where there are cities without direct paths
+Traveling Salesman problem to exist where there are cities without direct paths
 to other cities that satisfies the condition of the problem. Asymmetrical graph
 design can include paths that are different weights from one city to another in
 comparison to the opposite direction. In addition to this, asymmetrical design
@@ -155,35 +156,57 @@ can also have scenarios where paths only exist in one direction which
 essentially puts the weighted edge at a length of zero. Real world examples of
 this may include one-way streets, or flight paths.
 
-For our implementation purposes and the design our of solutions to the traveling
-salesman problem we have designed a variety of graph environments that start at
+For our implementation purposes and the design our of solutions to the Traveling
+Salesman problem we have designed a variety of graph environments that start at
 a minimum with five vertices however, these graphs eventually scale to a maximum
 of 500 vertices. Our created graph dataset uses an adjacency matrix as the data
 structure to store the values of the graph where the edges are randomized with
 an upper bound weight of 100. Instead of a complete graph our graph environment
 uses a randomized pattern to delete nodes from a complete graph to create a
-symmetrical graph with some edges missing. This can be showcased in (fig.
-\ref{fig:example_graph}). We have created a function that uses the squared
+symmetrical graph with some edges missing. This can be showcased in fig.
+\ref{fig:example_graph}. We have created a function that uses the squared
 number of vertices multiplied by a constant of .22 to assign a value as the
 number of deletions to occur within a specified graph. The constant of .22
 allows us to generate sufficiently small graphs that still have a solution to
 the problem, whilst maintaining a similar order of complexity in larger graphs.
 
+
 Even though a complete graph causes difficulty in finding the most optimal path
 due to the sheer number of possibilities, implementing a graph environment where
 there are missing edges allows our system to be a greater challenge. By
 introducing missing edges, it creates an environment where the genetic hill
-climber has a higher chance of reaching local minimums. In otherwise, due to the
-missing edges, the population of hill climbers could reach dead ends. A
-situation where all moves are to previously visited nodes, thus excluding them
-from the possible solution. In addition to this, having dead ends in the graph
-environment also allows a closer simulation to the real world where there may
-not be a route from one city to another without the use of back tracking or
-routing through another city or in this case another vertex. We believe that
-instead of using an imported data set, our custom generated dataset will provide
-an optimal learning environment for our genetic hill climbers to display their
-abilities to traverse the graph and create an optimal solution. This was done to
-test the proposed algorithm more rigorously against other heuristic solutions.
+climber has a higher chance of reaching local minimums. In other words, due to
+the missing edges, the population of hill climbers could reach dead ends. It
+creates a situation where all moves are to previously visited nodes, thus
+excluding them from the possible solution. In addition to this, having dead ends
+in the graph environment also allows a closer simulation to the real world where
+there may not be a route from one city to another without the use of back
+tracking or routing through another city or in this case another vertex. We
+believe that instead of using an imported data set, our custom generated dataset
+will provide an optimal learning environment for our Genetic Hill Climbers to
+display their abilities to traverse the graph and create an optimal solution.
+This was done to test the proposed algorithm more rigorously against other
+heuristic solutions.
+
+The Traveling Salesman problem is an NP-Hard problem. Exact solutions to the
+problem are feasible from a variety of proven conventional algorithms. Of
+course, a brute force exhaustive search will yield an optimal path for the
+Traveling Salesman, given its time complexity this method will only work on
+small graphs. Trying all the permutations would lie in the polynomial factor of
+O(n!). Better exact solutions such as Held-Karp, branch and bound,
+cutting-plane, and dynamic programming often yield a slightly better result with
+a solution to the problem in time O(n\textsuperscript{n}). In worse case
+scenarios depending on the graph environment, these solutions are no better than
+an exhaustive search. We have included an exhaustive search and an
+implementation of the branch and bound algorithm to compete with our proposed
+approach at an optimal solution to the Traveling Salesman problem that can be
+seen in our results and analysis section. Because the Genetic Hill Climber is a
+heuristic solution, it is only possible to provide an approximate solution.
+These suboptimal algorithms deliver approximated solutions in a reasonable time
+greatly reduced from O(n!) or even eclipsing the time of established exact
+algorithm’s O(n\textsuperscript{n}) time. We believe that this type of approach
+is appropriate once the graph sizes enlarge to a point where the earlier
+mentioned exact solutions would be rendered useless.
 
 \begin{figure}[h]
     \centering
@@ -205,11 +228,11 @@ scenarios depending on the graph environment, these solutions are no better than
 an exhaustive search. We have included an exhaustive search and an
 implementation of the branch and bound algorithm to compete with our proposed
 approach at an optimal solution to the Traveling Salesman problem that can be
-seen in our results and analysis section. Because the genetic hill climber is a
+seen in our results and analysis section. Because the Genetic Hill Climber is a
 heuristic solution, it is only possible to provide an approximate solution.
 These suboptimal algorithms deliver approximated solutions in a reasonable time
 greatly reduced from O(n!) or even eclipsing the time of established exact
-algorithms O(n\textsuperscript{n}) time. We believe that this type of approach
+algorithm’s O(n\textsuperscript{n}) time. We believe that this type of approach
 is appropriate once the graph sizes enlarge to a point where the earlier
 mentioned exact solutions would be rendered useless.
 
@@ -229,7 +252,7 @@ problem incrementally through taking steps that minimize cost of the overall
 solution. In the simplest form, this is a greedy technique. Where the algorithm
 simply evaluates all steps from its current state, and chooses that which
 satisfies some cost function the best. There are common improvements on this
-principle, one of which is a Stochastic Hill Climber. This is a Hill Climber
+principle, one of which is a Stochastic Hill Climber. This is a hill climber
 that may not choose the next state that satisfies the cost function the best.
 Depending on the implementation this can vary. Some common ways to implement
 this model are to choose a random state that improves the current state or has
@@ -252,13 +275,13 @@ generation in a Genetic Algorithm, the best individuals of each generation will
 approach the best solution.
 
 The concept for this implementation is that when the problem consists of a
-complex, large, non-complete graph the starting position of a Hill Climber can
-widely influence the final solution. Here, the starting position of the Hill
-Climber is being optimized by a genetic algorithm. Each generation introduces
+complex, large, non-complete graph the starting position of a hill climber can
+widely influence the final solution. Here, the starting position of the hill
+climber is being optimized by a Genetic algorithm. Each generation introduces
 new instances of hill climbers to the population whose starting position is
 based relative to the best individual hill climbers of previous populations.
 
-Both the hill climbing individuals and the genetic algorithm instantiating them
+Both the hill climbing individuals and the Genetic algorithm instantiating them
 have a stochastic element. The hill climbers have a fixed chance of taking a
 random move from the available moves from their current position on the graph.
 This allows them to potentially make it over a local maxima and wider variance
@@ -279,51 +302,51 @@ be expressed as the following. Note that the approximation is the value obtained
 in the testing shown in the next section of the paper.
 
 \begin{figure}
-    \[ \sum_{k=1}^{G}\sum_{j=1}^{P}\sum_{i=1}^{N}\sum_{q=1}^{N}1 = 0\Big(G\times P
-        \times N\textsuperscript{2}\Big) \approx O\Bigg(N\textsuperscript{3}\Bigg)
-    \]
+    \[ \sum_{k=1}^{G}\sum_{j=1}^{P}\sum_{i=1}^{N}\sum_{q=1}^{N}1 = 0\Big(G\times
+        P \times N\textsuperscript{2}\Big) \approx
+        O\Bigg(N\textsuperscript{3}\Bigg) \]
     \caption{Theoretical time complexity of the Genetic Hill Climber with inputs being number of Generations, Populations, and Nodes}
 \end{figure}
 
 \section{Perfromance Evaulation}
-Firstly, before analysis of our developed genetic hill climber, the results of
-the conventional approaches to the traveling salesman problem should be looked
+Firstly, before analysis of our developed Genetic Hill Climber, the results of
+the conventional approaches to the Traveling Salesman problem should be looked
 at first. Using our graph environments that were created and discussed earlier
-in the problem definition section, we are unable to obtain optimal solutions to
+in the problem definition section, we were unable to obtain optimal solutions to
 the graphs once the number of nodes passed 15. Graphs of size 20 vertices and
 higher, no optimal solutions were able to be found. This could be attributed to
 the circumstances of our testing machine. In attempts to find the optimal
-solution either using an exhaustive search or the branch and bound algorithm,
+solution either using an exhaustive search or the Branch and Bound algorithm,
 our machine ran for several hours until an abort was conducted due to a
 limitation of memory. For the graph of 15 nodes, utilizing an exhaustive search,
 the solution was found after a surplus of many hours though the exact runtime
-was not recorded. For the branch and bound algorithm running on a graph of 15
+was not recorded. For the Branch and Bound algorithm running on a graph of 15
 nodes, the run time was a $339.85$ seconds. Additionally, it must be pointed out
 that the solutions that were obtained via branch and bound were not as optimal
 and exact in comparison to the exhaustive search. Our accuracy metric for
 evaluating these solutions uses a fitness definition that can be defined as the
 total amount of length found in the circuit divided by the total amount of
-nodes. This could possibly be due to our implementation of the branch of bound
-algorithm where certain branches are excluded from the optimal solution due to
-the graphs not being complete. These dead ends in the graph could result in the
-algorithm failing to find the global maximum. This can be seen where only the
-optimal fitness is equal for the graph of five nodes. Once the graph increases
-to a size of ten and 15 nodes, the fitness differs between the branch and bound
-algorithm compared exhaustive search.
+nodes. This could be due to our implementation of the Branch of Bound algorithm
+where certain branches are excluded from the optimal solution due to the graphs
+not being complete. These dead ends in the graph could result in the algorithm
+failing to find the global maximum. This can be seen where only the optimal
+fitness is equal for the graph of five nodes. Once the graph increases to a size
+of ten and 15 nodes, the fitness differs between the branch and bound algorithm
+compared exhaustive search.
 
-These results show that these traditional solutions to the traveling salesman
-problem are not reliable once a graph scales to a certain size. It is very easy
-for real world applications to require more than 15 nodes. Once again it must be
-emphasized that in this situation the limiting factor would be our machine when
-conducting these tests. This data and conclusion can be drawn once referencing
-table \ref{table:branch_and_bound_table}, where there are blanks in columns one
-through five from a lack of data that could not be obtained for graphs of nodes
-greater than 15. Attempting to fit the branch and bound algorithm on a time
-complexity chart shows poorly with our test data of three points. As can be seen
-in figure \ref{fig:branch_and_bound_time_complexity}, due to scaling, even if a
-fourth point were to be obtained with an X-axis of 20 nodes, the line of best
-fit for a graph of n\textsuperscript{n} would project to be a near vertical
-line.
+These results show that these traditional solutions to the Traveling Salesman
+problem are not reliable once a graph scales to a certain size. It is extremely
+easy for real world applications to require more than 15 nodes. Once again it
+must be emphasized that in this situation the limiting factor would be our
+machine when conducting these tests. This data and conclusion can be referenced
+in table \ref{table:branch_and_bound_table} where there are blanks in columns
+one through five from a lack of data that could not be obtained for graphs of
+nodes greater than 15. Attempting to fit the Branch and Bound algorithm on a
+time complexity chart shows poorly without our test data of three points. As
+can be seen in figure \ref{fig:branch_and_bound_time_complexity}, due to
+scaling, even if a fourth point were to be obtained with an X-axis of 20 nodes,
+the line of best fit for a graph of n\textsuperscript{n} would project to be a
+near vertical line.
 
 \begin{table}[h]
     \setlength\tabcolsep{2pt}
@@ -341,12 +364,12 @@ line.
     \label{fig:branch_and_bound_time_complexity}
 \end{figure}
 
-Next, upon examination, our stochastic hill climber, which eventually will be
-developed as a genetic hill climber, provided us with appalling results. The
-stochastic hill climber was able to quickly traverse the graphs and provide
+Next, upon examination, our Stochastic Hillclimber, which eventually will be
+developed as a Genetic Hill Climber, provided us with appalling results. The
+Stochastic Hill Climber was able to quickly traverse the graphs and provide
 solutions where the other conventional methods were not. At one end of the
 spectrum with a graph of five vertices, it was able to obtain the same optimal
-fitness as both the branch and bound algorithm as well as the exhaustive search
+fitness as both the Branch and Bound algorithm as well as the exhaustive search
 with a fitness of $74.08426$. Although this is not much of an achievement given
 the small size of the graph. The run times were comparable as well within ten
 thousandths of a second. These times were kept until a graph of 50 nodes was
@@ -356,20 +379,20 @@ the spectrum with a $0.28519$ second run time for a graph of 500 nodes. These
 data values can be seen in table \ref{table:hill_climber_table}. As
 mathematically defined in the solutions section, this a glaring obvious
 difference between a time complexity of O(n\textsuperscript{n}) and a time
-complexity of O(n\textsuperscript{2}).  The stochastic hill climber time
+complexity of O(n\textsuperscript{2}). The Stochastic Hill Climber time
 complexity chart can be seen in figure \ref{fig:hill_climber}. Despite these
 quick times, due to our limitations of the other conventional approach, we are
-unsure of how our fitness that was obtained from the stochastic hill climber
+unsure of how our fitness that was obtained from the Stochastic Hill Climber
 compares to an optimal fitness. In other words, even though a solution was
 generated, we are unsure of how accurate and optimal this solution is. This just
-goes to show the complexity of the NP-Hard problem that is the traveling
-salesman.
+goes to show the complexity of the NP-Hard problem that is the Traveling
+Salesman.
 
 \begin{table}[h]
     \setlength\tabcolsep{2pt}
     \centering
     \include{assets/hill_climber_table.tex}
-    \caption{Run times of the Stochastic Hill-Climber and obtained Fitness}
+    \caption{Run times of the Stochastic Hill Climber and obtained Fitness}
     \label{table:hill_climber_table}
 \end{table}
 
@@ -388,18 +411,18 @@ graph of five nodes, the Genetic Hill Climber took approximately 250 times
 longer compared to the Stochastic Hill Climber. Once the graphs enlargened to a
 size of 500, the Stochastic Hill Climber had a faster run time by a factor of
 nearly 100. We deliberately decided to exclude a runtime graph to compare these
-two algorithms due to the vast differences in performance.  Using our data, this
+two algorithms due to the vast differences in performance. Using our data, this
 type of chart would show the Genetic Hill Climber as exponential while the
 Stochastic Hill Climber would appear linear despite it being
 O(n\textsuperscript{2}). However, there is an included graph which can show the
 estimates of basic operations per given number of nodes with these two
-algorithms side by side \ref{fig:hc_vs_ghc}. This estimate of using theoretical
+algorithms side by side (fig. \ref{fig:hc_vs_ghc}). This estimate of using theoretical
 number of computations more closely resembles how these two graphs should look
-when compared. However, there is still a misleading linear type of line and
-exponential line can clearly be seen. Table \ref{table:ghc_vs_hc_table} shows
-these run times side by side where the comparison can be more easily seen with
-the Stochastic Hill Climber being much quicker compared to the slower Genetic
-Hill Climbing algorithm.
+when compared with one another. However, there is still a misleading linear type
+of line and exponential line can clearly be seen. Table
+\ref{table:ghc_vs_hc_table} shows these run times side by side where the
+comparison can be more easily seen with the Stochastic Hill Climber being much
+quicker compared to the slower Genetic Hill Climbing algorithm.
 
 \begin{table}[h]
     \setlength\tabcolsep{2pt}
@@ -411,9 +434,9 @@ Hill Climbing algorithm.
 
 \begin{figure}[h]
     \centering
-    \textbf{Computed Time Complexity of Hill Climber vs. Genetic Hill Climber}
+    \textbf{Computed Time Complexity of Stochastic Hill Climber vs. Genetic Hill Climber}
     \includegraphics[width=\columnwidth]{assets/hc_vs_ghc.png}
-    \caption{Computed time complexity of a Hill Climber compared to a Genetic Hill Climber using theoretical mathematical data}
+    \caption{Computed time complexity of our Stochastic Hill Climber compared to our Genetic Hill Climber using theoretical mathematical data}
     \label{fig:hc_vs_ghc}
 \end{figure}
 
@@ -429,11 +452,11 @@ testing, we were able to generate the test data that is shown above and within
 the variance chart as well as below in the standalone Genetic Hill Climbing
 data. Since we were able to best the Stochastic Hill Climber early on, we did
 not further progress to see the optimal number of populations and generations as
-our initial plan was to simply best a basic Hill Climber. It can safely be said
-that the Genetic Hill Climber exchanges time complexity for accuracy. Obtaining
-better results with a lower fitness than the Stochastic Hill Climber, however
-the Genetic Hill Climber slowed down a large amount. The standalone data for the
-Genetic Hill Climber follows below.
+our initial proposal was to simply best a basic Hill Climber in fitness. It can
+safely be said that the Genetic Hill Climber exchanges time complexity for
+accuracy. Obtaining better results with a lower fitness than the Stochastic Hill
+Climber, however the Genetic Hill Climber slowed down a large amount. The
+standalone data for the Genetic Hill Climber follows below.
 
 \begin{table}[h]
     \centering
@@ -455,7 +478,7 @@ Genetic Hill Climber follows below.
 \begin{table}[h]
     \centering
     \include{assets/ghc_table.tex}
-    \caption{Run time data of the Genetic Hill Climber}
+    \caption{Run time data of the Genetic Hill Climber and obtained fitness}
     \label{table:ghc_table}
 \end{table}
 
@@ -463,7 +486,7 @@ Genetic Hill Climber follows below.
     \centering
     \textbf{Stochastic Hill Climber VS Genetic Hill Climber Variance from Optimal Fitness}
     \includegraphics[width=\columnwidth]{assets/hc_vs_ghc_variance.png}
-    \caption{This graph shows the variance of the two algorithms from the optimal fitness. Note:limited graph data}
+    \caption{This graph shows the variance of the two algorithms from the optimal fitness. Note: limited graph data}
     \label{fig:variance}
 \end{figure}
 
@@ -475,7 +498,7 @@ algorithm design and analysis, however we encountered difficulties with
 development as the technologies used were unfamiliar.
 
 Our developed Genetic Hill Climbing algorithm was able to obtain suboptimal
-solutions to the traveling salesman problem while conventional approaches were
+solutions to the Traveling Salesman problem while conventional approaches were
 not able to do so. The algorithm yielded solutions, however the optimality of
 these are unverified because we were unable to obtain exact solutions for our
 set of large graphs. Despite this, it should be seen on a positive note that any
@@ -490,18 +513,26 @@ result as a single n input instead of an input of n\textsuperscript{n}. As
 mentioned earlier, we did not proceed with further testing and optimization to
 find the optimal number of generations and populations. Further alteration of
 the algorithm's parameters could affect run times and obtained fitness which we
-did not test. With this being said, we believe our solution is unable to compete
+did not test. With that being said, we believe our solution is unable to compete
 with other forefront heuristic solutions without improvements. This is further
 expanded upon later.
 
 \section{Conclusion and Future Work}
-In closing, it is clear that a lot of improvements would necessary to be made
+In closing, it is clear that a lot of improvements would be necessary to be made
 for this to compete with other heuristic algorithms used for solving the
 Traveling Salesman problem. The data has shown that this solution does allow for
 the generation of good sub-optimal solutions in an efficient manner compared to
 conventional approaches. At best any answer is better than no answer. It is also
 possible this methodology might be more effective for other combinatorial
 optimization problems.
+
+The representation used for the Traveling Salesman Problem in this
+implementation was an adjacency matrix as described in a previous section.
+Implementing the representation as an adjacency list would have significantly
+cut down on the overhead of the entire implementation. Quicker run times could
+have potentially been obtained. It may also improve the time complexity to
+create graphs allowing for more testing data of larger sizes. Creating Graphs of
+large sizes took a significant amount of time.
 
 In the future, modifying the algorithm such that the size of the population and
 the number of generations is determined by the complexity of the problem might
@@ -510,27 +541,21 @@ continue creating new generations until the cost function yields a particular
 level of optimality. This would allow the algorithm to end sooner if a near goal
 state that meets the needs of the problem has already been found.
 
-The representation used for the Traveling Salesman Problem in this
-implementation was an adjacency matrix. Implementing the representation as an
-adjacency list would have significantly cut down on the overhead of the entire
-implementation. It may also improve the complexity to create graphs allowing for
-more testing data of larger sizes.
-
-If instead of allowing the Hill Climbers in each generation of our algorithm run
-to completion, there was an evaluation function to end and replace Hill Climbers
-that have a low probability of improving the next generation a large amount of
-run time could be avoided. Similarly, if the population existed with Hill
-Climbers are all different stages of completion, there would be only one
+If instead of allowing the hill climbers in each generation of our algorithm run
+to completion, there was an evaluation function to end and replace hill climbers
+that have a low probability of improving the next generation, a large amount of
+run time could be avoided. Similarly, if the population existed with hill
+climbers that are all at various stages of completion, there would be only one
 continuous population through each generation. Though this might not make the
 complexity of the algorithm any different, it would improve the ease of
 implementing some of the earlier suggested improvements to dynamic set the
-population size and number of Hill Climbers Created. In short, these
+population size and number of hill climbers created. In short, these
 improvements would allow for the same amount of compute time to be spent on
 solutions with a higher probability of improving upon the best solution.
 
-Similarly, to Simulated Annealing, it would be possible and likely more optimal
-to change the level of stochastisim as the algorithm progressively gets closer
-to the optimal solution. During the beginning, allowing more movement around the
+Similarly, to Simulated Annealing, it would be possible and more optimal to
+change the level of stochastisim as the algorithm progressively gets closer to
+the optimal solution. During the beginning, allowing more movement around the
 graph for starting positions would result in finding the way around large global
 minimums early. Furthermore, it would also be possible to implement this design
 using a population of Simulated Annealing Climbers, though it is unsure if this
